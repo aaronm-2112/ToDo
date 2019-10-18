@@ -4,7 +4,7 @@
   "description": "A basic to-do list.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --mode production",
     "dev": "webpack --mode development",
     "start": "webpack-dev-server --mode development --open"
   },
@@ -19,11 +19,18 @@
   },
   "homepage": "https://github.com/aaronm-2112/ToDo#readme",
   "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.0.6",
+    "babel-preset-env": "^1.7.0",
     "html-webpack-plugin": "^3.2.0",
     "webpack": "^4.41.0",
     "webpack-cli": "^3.3.9"
   },
   "dependencies": {
+    "axios": "^0.19.0",
+    "babel-polyfill": "^6.26.0",
+    "ts-loader": "^6.2.0",
+    "typescript": "^3.6.4",
     "webpack-dev-server": "^3.8.2"
   }
 }
