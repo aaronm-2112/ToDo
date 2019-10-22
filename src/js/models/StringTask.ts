@@ -1,13 +1,17 @@
 import Task from "./Task";
 
 export default class StringTask implements Task {
-  userTask: String;
+  private userTask: String;
 
-  constructor() {
+  constructor(userInput) {
     this.userTask = "";
   }
 
   getTaskFields() {
     return this.userTask;
+  }
+
+  setTaskValue(task: string) {
+    this.userTask = task; 
   }
 }

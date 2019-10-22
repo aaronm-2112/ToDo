@@ -1,3 +1,3 @@
 export default interface Controller {
-  addEvent(event: String, DOMElement: String);
+  addEvents(event: string, DOMElement: string);
 }
