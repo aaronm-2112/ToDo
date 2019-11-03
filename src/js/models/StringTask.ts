@@ -4,7 +4,7 @@ export default class StringTask implements Task {
   private userTask: String;
 
   constructor(userInput) {
-    this.userTask = "";
+    this.userTask = userInput;
   }
 
   getTaskFields() {
@@ -12,6 +12,6 @@ export default class StringTask implements Task {
   }
 
   setTaskValue(task: string) {
-    this.userTask = task; 
+    this.userTask = task;
   }
 }
