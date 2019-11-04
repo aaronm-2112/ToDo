@@ -38,7 +38,7 @@ export default class TaskEntryController implements Controller {
     this.model.parseData();
     //Add the data to the view
     let modelData: Array<Task> = this.model.getModelData();
-    this.view.renderTaskList(modelData);
+    this.view.paginate(modelData, 5);
   };
 
   deleteTaskItem = (taskBtn: Element) => {
