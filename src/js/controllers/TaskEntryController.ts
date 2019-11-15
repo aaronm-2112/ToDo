@@ -23,7 +23,30 @@ export default class TaskEntryController implements Controller {
     //configure what function will be called
     this.view.createAddTaskEvent(this.addTaskToList);
     this.view.assignEventDelegation(this.chooseHandler);
+    this.view.assignPageChangeLeftDelegation(this.changePage);
+    this.view.assignPageChangeRightDelegation(this.changePage);
   }
+
+  changePage = e => {
+    //const element: Element = ; //e.target.closest("#left_page");
+    console.log("Element's id: " + e.target.id);
+    let modelData: Array<Task> = this.model.getModelData();
+    if (
+      e.target.closest("#left_page") != null &&
+      e.target.closest("#left_page").id === "left_page"
+    ) {
+      console.log("Left Page");
+      this.view.paginate(modelData, 5, Number(e.target.textContent));
+    }
+
+    if (
+      e.target.closest("#right_page") != null &&
+      e.target.closest("#right_page").id === "right_page"
+    ) {
+      console.log("Right Page");
+      this.view.paginate(modelData, 5, Number(e.target.textContent));
+    }
+  };
 
   addTaskToList = () => {
     //Get user input
@@ -38,7 +61,11 @@ export default class TaskEntryController implements Controller {
     this.model.parseData();
     //Add the data to the view
     let modelData: Array<Task> = this.model.getModelData();
-    this.view.paginate(modelData, 5);
+    this.view.paginate(
+      modelData,
+      5,
+      this.view.calculateCurrentPage(modelData.length, 5)
+    );
   };
 
   deleteTaskItem = (taskBtn: Element) => {
