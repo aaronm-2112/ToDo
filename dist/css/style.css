@@ -6,11 +6,13 @@ h1 {
 #main_container {
   position: absolute;
   left: 35%;
+  height: 100%;
 }
 
 #pagination_container {
   position: absolute;
   left: 35%;
+  top: 30%; 
 }
 
 #task_list_container {

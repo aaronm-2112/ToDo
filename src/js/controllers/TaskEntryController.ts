@@ -36,6 +36,7 @@ export default class TaskEntryController implements Controller {
       e.target.closest("#left_page").id === "left_page"
     ) {
       console.log("Left Page");
+      this.view.clearTaskList(); 
       this.view.paginate(modelData, 5, Number(e.target.textContent));
     }
 
@@ -44,6 +45,7 @@ export default class TaskEntryController implements Controller {
       e.target.closest("#right_page").id === "right_page"
     ) {
       console.log("Right Page");
+      this.view.clearTaskList(); 
       this.view.paginate(modelData, 5, Number(e.target.textContent));
     }
   };

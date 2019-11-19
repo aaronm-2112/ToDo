@@ -1,5 +1,5 @@
 import Task from "../models/Task";
-import { strict } from "assert";
+
 /*
 Purpose: Responsible for adding, deleting, paginating, and returning list items.
 */
@@ -89,8 +89,10 @@ export default class TaskListView {
     let tasksToRenderLimit: number = 0;
     if (modelData.length < itemsPerPage) {
       tasksToRenderLimit = modelData.length;
-    } else {
-      tasksToRenderLimit = modelData.length - index;
+    } else if(modelData.length > (currentPage * itemsPerPage)){ //when we are rebuilding a page
+      tasksToRenderLimit = itemsPerPage;
+    } else { //when we are building a page 
+      tasksToRenderLimit = modelData.length - index; 
     }
 
     for (taskIterator; taskIterator < tasksToRenderLimit; taskIterator++) {
@@ -228,16 +230,16 @@ export default class TaskListView {
     let leftPageBtn: HTMLElement = document.getElementById("left_page");
     let rightPageBtn: HTMLElement = document.getElementById("right_page");
 
-    //Get the index number of the last child rendered in the task list
-    let taskListItems: HTMLCollection = document.getElementById("task_list")
-      .children;
+    // //Get the index number of the last child rendered in the task list
+    // let taskListItems: HTMLCollection = document.getElementById("task_list")
+    //   .children;
 
-    //Render nothing if no elements are on the page
-    if (taskListItems.length === 0) {
-      leftPageBtn.style.visibility = "hidden";
-      rightPageBtn.style.visibility = "hidden";
-      return;
-    }
+    // //Render nothing if no elements are on the page
+    // if (taskListItems.length === 0) {
+    //   leftPageBtn.style.visibility = "hidden";
+    //   rightPageBtn.style.visibility = "hidden";
+    //   return;
+    // }
 
     //Calculate the left page number
     leftPageNumber = this.calculatePreviousPage(
