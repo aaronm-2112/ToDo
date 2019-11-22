@@ -19,7 +19,7 @@ export default class TaskEntryController implements Controller {
     this.view = view;
   }
 
-  addEvents() {
+  public addEvents() {
     //configure what function will be called
     this.view.createAddTaskEvent(this.addTaskToList);
     this.view.assignEventDelegation(this.chooseHandler);
@@ -28,7 +28,6 @@ export default class TaskEntryController implements Controller {
   }
 
   changePage = e => {
-    //const element: Element = ; //e.target.closest("#left_page");
     console.log("Element's id: " + e.target.id);
     let modelData: Array<Task> = this.model.getModelData();
     if (
@@ -36,7 +35,7 @@ export default class TaskEntryController implements Controller {
       e.target.closest("#left_page").id === "left_page"
     ) {
       console.log("Left Page");
-      this.view.clearTaskList(); 
+      this.view.clearTaskList();
       this.view.paginate(modelData, 5, Number(e.target.textContent));
     }
 
@@ -45,7 +44,7 @@ export default class TaskEntryController implements Controller {
       e.target.closest("#right_page").id === "right_page"
     ) {
       console.log("Right Page");
-      this.view.clearTaskList(); 
+      this.view.clearTaskList();
       this.view.paginate(modelData, 5, Number(e.target.textContent));
     }
   };
@@ -77,6 +76,7 @@ export default class TaskEntryController implements Controller {
     task_list.removeChild(target);
   };
 
+  // Can be expanded upon when more functionality is added to each task
   chooseHandler = e => {
     const element: Element = e.target.closest("#btn_delete");
     if (element.id === "btn_delete") {
