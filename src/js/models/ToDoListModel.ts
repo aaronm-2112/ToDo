@@ -3,7 +3,7 @@ import Model from "./Model";
 /*
 Purpose: Responsible for working on the data in the TaskListView.
 */
-export default class TaskListModel implements Model {
+export default class ToDoListModel implements Model {
   private taskModelData: Array<Task>;
 
   constructor() {

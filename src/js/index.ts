@@ -1,6 +1,6 @@
-import TaskEntryController from "./controllers/TaskEntryController";
-import TaskListView from "./views/TaskListView";
-import TaskListModel from "./models/TaskListModel";
+import ToDoListController from "./controllers/ToDoListController";
+import ToDoListView from "./views/ToDoListView";
+import ToDoListModel from "./models/ToDoListModel";
 /*
 Purpose: This is the controller for the simplified MVC architecture this app will employ. 
           Reference: 
@@ -13,9 +13,9 @@ Purpose: This is the controller for the simplified MVC architecture this app wil
 //TODO: Implement with an observer
 
 //let taskEnterModel = new TaskEntryModel();
-let taskListModel = new TaskListModel();
-let taskListView = new TaskListView();
+let taskListModel = new ToDoListModel();
+let taskListView = new ToDoListView();
 
 //let pipe = new Pipe();
-let taskList = new TaskEntryController(taskListModel, taskListView);
-taskList.addEvents();
+let toDoList = new ToDoListController(taskListModel, taskListView);
+toDoList.addEvents();

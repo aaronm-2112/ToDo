@@ -1,10 +1,10 @@
 import Task from "../models/Task";
 
 /*
-Purpose: Responsible for adding, deleting, paginating, and returning list items.
+Purpose: Responsible for adding, deleting, paginating the ToDo list. 
 */
 
-export default class TaskListView {
+export default class ToDoListView {
   constructor() {
     //currentPage = 1;
   }
@@ -21,8 +21,21 @@ export default class TaskListView {
     document
       .querySelector("#task_list_container")
       .addEventListener("click", e => {
+        console.log(e);
         handler(e);
       });
+  };
+
+  // delete the user inputted task from the todo list
+  deleteTaskItem = taskBtn => {
+    //Get the task list
+    const task_list: Node = taskBtn.parentNode.parentNode.parentNode;
+
+    //Mark the target that will be deleted
+    const target: Node = taskBtn.parentNode.parentNode;
+
+    //Remove the target from the DOM
+    task_list.removeChild(target);
   };
 
   assignPageChangeLeftDelegation = handler => {
@@ -38,7 +51,6 @@ export default class TaskListView {
   };
 
   renderNewTask(task: string, indexPosition: number) {
-    //console.log(task);
     let new_task_item: Element;
     let task_item_div: Element;
 
@@ -69,8 +81,6 @@ export default class TaskListView {
     `;
     */
 
-    //console.log(new_task_item);
-
     document
       .querySelector("#task_list")
       .insertAdjacentElement("beforeend", new_task_item);
@@ -89,10 +99,12 @@ export default class TaskListView {
     let tasksToRenderLimit: number = 0;
     if (modelData.length < itemsPerPage) {
       tasksToRenderLimit = modelData.length;
-    } else if(modelData.length > (currentPage * itemsPerPage)){ //when we are rebuilding a page
+    } else if (modelData.length > currentPage * itemsPerPage) {
+      //when we are rebuilding a page
       tasksToRenderLimit = itemsPerPage;
-    } else { //when we are building a page 
-      tasksToRenderLimit = modelData.length - index; 
+    } else {
+      //when we are building a page
+      tasksToRenderLimit = modelData.length - index;
     }
 
     for (taskIterator; taskIterator < tasksToRenderLimit; taskIterator++) {
